@@ -1,0 +1,7 @@
+---
+
+- name: confgiure apache for httpd
+  hosts: node1
+  become: yes
+  roles:
+    - apache

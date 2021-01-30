@@ -1,0 +1,14 @@
+- name: copy lb-health-check.html file
+  copy:
+    src: files/lb-health-check.html
+    dest: /var/www/html/lb-health-check.html
+
+- name: copy httpd.conf file 
+  copy: 
+    src: files/httpd-template.conf
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: 
+    - restart apache

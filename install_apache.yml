@@ -1,0 +1,23 @@
+---
+
+- name: "install httpd"
+  hosts: localhost
+  become: yes
+  tasks: 
+    - name: install apache task1
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+       - tree
+       - httpd
+       - bind-utils
+       - tar
+      when: ansible_os_family == "RedHat"
+      tags: install apache
+
+    - name: service start
+      service: 
+        name: httpd
+        state: started
+      tags: service_started
